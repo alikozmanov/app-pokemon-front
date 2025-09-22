@@ -1,0 +1,8 @@
+<h2>Gestion des Boosters</h2>
+<div *ngIf="boosters.length === 0">Aucun booster trouvé.</div>
+<ul>
+  <li *ngFor="let b of boosters">
+    Booster #{{ b.id }} - Ouvert le {{ b.dateOuverture | date }}
+    <button (click)="supprimer(b.id)">Supprimer</button>
+  </li>
+</ul>

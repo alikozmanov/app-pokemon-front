@@ -24,7 +24,9 @@ export class EchangeService {
   }
 
   accepter(id: number, dresseurId: number): Observable<Echange> {
-    return this.http.put<Echange>(`${this.apiUrl}/${id}/accepter`, dresseurId);
+    return this.http.put<Echange>(`${this.apiUrl}/${id}/accepter`, JSON.stringify(dresseurId), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   refuser(id: number): Observable<Echange> {

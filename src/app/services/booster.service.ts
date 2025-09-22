@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Booster } from '../models/booster.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +17,10 @@ export class BoosterService {
 
   ouvrir(dresseurId: number): Observable<Booster> {
     return this.http.post<Booster>(`${this.apiUrl}/ouvrir/${dresseurId}`, {});
+  }
+
+  // Supprimer seulement si back-end ajouté
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

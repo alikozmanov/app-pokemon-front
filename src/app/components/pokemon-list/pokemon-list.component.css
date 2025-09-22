@@ -1,0 +1,65 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pokemon-card {
+  border: 2px solid #333;
+  border-radius: 12px;
+  width: 150px;
+  padding: 8px;
+  text-align: center;
+  background: linear-gradient(180deg, #fff, #f0f0f0);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.pokemon-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.pokemon-info h3 {
+  margin: 4px 0;
+}
+
+.rarete {
+  font-weight: bold;
+  color: #d9534f; /* rouge pour rareté */
+}
+
+.delete-btn {
+  margin-top: 6px;
+  padding: 4px 8px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c9302c;
+}
+
+.booster-btn {
+  padding: 8px 16px;
+  background-color: #0275d8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.booster-btn:hover {
+  background-color: #025aa5;
+}
+
+.empty-msg {
+  margin-top: 12px;
+  font-style: italic;
+  color: #666;
+}

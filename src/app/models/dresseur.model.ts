@@ -5,8 +5,9 @@ export class Dresseur {
   id: number;
   nom: string;
   pseudo: string;
+  avatar: string;
   niveau: number;
-  role?: string;
+  role: string;         // 'dresseur' ou 'admin'
   username?: string;
   password?: string;
   pokemons?: Pokemon[];
@@ -16,8 +17,9 @@ export class Dresseur {
     id: number,
     nom: string,
     pseudo: string,
+    avatar: string,
     niveau: number,
-    role?: string,
+    role: string,
     username?: string,
     password?: string,
     pokemons?: Pokemon[],
@@ -26,6 +28,7 @@ export class Dresseur {
     this.id = id;
     this.nom = nom;
     this.pseudo = pseudo;
+    this.avatar = avatar;
     this.niveau = niveau;
     this.role = role;
     this.username = username;
