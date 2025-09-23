@@ -21,14 +21,14 @@ export class PokemonListComponent implements OnInit {
   loadPokemons(): void {
     this.pokemonService.getAll().subscribe({
       next: (data: Pokemon[]) => this.pokemons = data,
-      error: err => console.error('Erreur chargement Pokémons', err)
+      error: (err: any) => console.error('Erreur chargement Pokémons', err)
     });
   }
 
   supprimer(id: number): void {
     this.pokemonService.delete(id).subscribe({
       next: () => this.loadPokemons(),
-      error: err => console.error('Erreur suppression Pokémon', err)
+      error: (err: any) => console.error('Erreur suppression Pokémon', err)
     });
   }
 
@@ -38,7 +38,7 @@ export class PokemonListComponent implements OnInit {
         // Ajoute les nouveaux Pokémon au tableau existant
         this.pokemons.push(...nouveauxPokemons);
       },
-      error: err => console.error('Erreur ouverture booster', err)
+      error: (err: any) => console.error('Erreur ouverture booster', err)
     });
   }
 }

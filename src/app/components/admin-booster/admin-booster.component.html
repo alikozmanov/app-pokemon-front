@@ -1,8 +1,22 @@
-<h2>Gestion des Boosters</h2>
-<div *ngIf="boosters.length === 0">Aucun booster trouvé.</div>
-<ul>
-  <li *ngFor="let b of boosters">
-    Booster #{{ b.id }} - Ouvert le {{ b.dateOuverture | date }}
-    <button (click)="supprimer(b.id)">Supprimer</button>
-  </li>
-</ul>
+<h2>Mes Pokémon</h2>
+
+<button (click)="ouvrirBooster()" class="booster-btn">Ouvrir un booster</button>
+
+<div *ngIf="pokemons.length === 0" class="empty-msg">
+  Aucun Pokémon trouvé.
+</div>
+
+<div class="card-container">
+  <div class="pokemon-card" *ngFor="let p of pokemons">
+    <div class="pokemon-image">
+      <img src="assets/default-pokemon.png" alt="{{ p.nom }}">
+    </div>
+    <div class="pokemon-info">
+      <h3>{{ p.nom }}</h3>
+      <p>Type : {{ p.type }}</p>
+      <p>Niveau : {{ p.niveau }}</p>
+      <p class="rarete">Rareté : {{ p.rarete }}</p>
+    </div>
+    <button class="delete-btn" (click)="supprimer(p.id)">Supprimer</button>
+  </div>
+</div>

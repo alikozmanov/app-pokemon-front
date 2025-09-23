@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoosterService } from '../../services/booster.service';
-import { Booster } from '../../models/booster.model';
+import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-admin-booster',
@@ -9,25 +9,29 @@ import { Booster } from '../../models/booster.model';
   standalone: false
 })
 export class AdminBoosterComponent implements OnInit {
-  boosters: Booster[] = [];
+
+  pokemons: Pokemon[] = [];
+  dresseurId = 1; // ID du dresseur connecté
 
   constructor(private boosterService: BoosterService) {}
 
   ngOnInit(): void {
-    this.loadBoosters();
+    // Optionnel : charger les Pokémon déjà existants
   }
 
-  loadBoosters(): void {
-    this.boosterService.getAll().subscribe({
-      next: (data) => this.boosters = data,
-      error: (err) => console.error('Erreur chargement boosters', err)
+  ouvrirBooster(): void {
+    this.boosterService.ouvrir(this.dresseurId).subscribe({
+      next: (nouveauxPokemons: Pokemon[]) => {
+        // Ajouter les nouveaux Pokémon à la liste
+        this.pokemons.push(...nouveauxPokemons);
+      },
+      error: (err: any) => console.error('Erreur ouverture booster', err)
     });
   }
 
   supprimer(id: number): void {
-    this.boosterService.delete(id).subscribe({
-      next: () => this.loadBoosters(),
-      error: (err) => console.error('Erreur suppression booster', err)
-    });
+    // Si tu veux supprimer un Pokémon de l'affichage seulement
+    this.pokemons = this.pokemons.filter(p => p.id !== id);
+    // ou appeler un service backend si nécessaire
   }
 }
