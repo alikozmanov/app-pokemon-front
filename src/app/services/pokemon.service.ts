@@ -13,31 +13,19 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer tous les Pokémon
   getAll(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(this.apiUrl);
   }
 
-  // Récupérer un Pokémon par ID
-  get(id: number): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.apiUrl}/${id}`);
-  }
-
-  // Créer un Pokémon
-  create(pokemon: Pokemon): Observable<Pokemon> {
-    return this.http.post<Pokemon>(this.apiUrl, pokemon);
-  }
-
-  // Supprimer un Pokémon
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  // Ouvrir un booster pour un dresseur
+  // Ouvrir un booster et récupérer uniquement les Pokémon
   openBooster(dresseurId: number): Observable<Pokemon[]> {
     return this.http.post<Booster>(`${this.boosterUrl}/ouvrir/${dresseurId}`, {})
       .pipe(
-        map((booster: Booster) => booster.cartes) // On ne garde que la liste des Pokémon
+        map((booster: Booster) => booster.cartes)
       );
   }
 }

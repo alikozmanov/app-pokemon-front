@@ -35,6 +35,7 @@ export class PokemonListComponent implements OnInit {
   ouvrirBooster(): void {
     this.pokemonService.openBooster(this.dresseurId).subscribe({
       next: (nouveauxPokemons: Pokemon[]) => {
+        // Ajoute les nouveaux Pokémon au tableau existant
         this.pokemons.push(...nouveauxPokemons);
       },
       error: err => console.error('Erreur ouverture booster', err)
