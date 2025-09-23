@@ -1,14 +1,15 @@
 <h2>Mes Pokémons</h2>
 
+<button (click)="ouvrirBooster()" class="booster-btn">
+  <span class="booster-text">Ouvrir un Booster</span>
+</button>
+
 <div *ngIf="pokemons.length === 0" class="empty-msg">
   Aucun Pokémon trouvé.
 </div>
 
 <div class="card-container">
   <div class="pokemon-card" *ngFor="let p of pokemons">
-<!--    <div class="pokemon-image">-->
-<!--      <img [src]="p.dresseur?.avatar || 'assets/default-pokemon.png'" alt="{{p.nom}}">-->
-<!--    </div>-->
     <div class="pokemon-info">
       <h3>{{ p.nom }}</h3>
       <p>Type : {{ p.type }}</p>

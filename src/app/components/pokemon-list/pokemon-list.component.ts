@@ -1,44 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../services/pokemon.service';
+import { BoosterService } from '../../services/booster.service';
 import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css'],
-  standalone: false
+  standalone: false,
 })
 export class PokemonListComponent implements OnInit {
   pokemons: Pokemon[] = [];
   dresseurId = 1; // ID du dresseur connecté
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private boosterService: BoosterService) {}
 
   ngOnInit(): void {
-    this.loadPokemons();
+    // On peut éventuellement charger les Pokémon existants ici
+    this.pokemons = [];
   }
 
-  loadPokemons(): void {
-    this.pokemonService.getAll().subscribe({
-      next: (data: Pokemon[]) => this.pokemons = data,
-      error: (err: any) => console.error('Erreur chargement Pokémons', err)
+  ouvrirBooster(): void {
+    this.boosterService.ouvrir(this.dresseurId).subscribe({
+      next: (nouveauxPokemons: Pokemon[]) => {
+        // Remplacer les Pokémon affichés par les 10 nouvelles cartes
+        this.pokemons = nouveauxPokemons;
+      },
+      error: (err: any) => console.error('Erreur ouverture booster', err)
     });
   }
 
   supprimer(id: number): void {
-    this.pokemonService.delete(id).subscribe({
-      next: () => this.loadPokemons(),
-      error: (err: any) => console.error('Erreur suppression Pokémon', err)
-    });
-  }
-
-  ouvrirBooster(): void {
-    this.pokemonService.openBooster(this.dresseurId).subscribe({
-      next: (nouveauxPokemons: Pokemon[]) => {
-        // Ajoute les nouveaux Pokémon au tableau existant
-        this.pokemons.push(...nouveauxPokemons);
-      },
-      error: (err: any) => console.error('Erreur ouverture booster', err)
-    });
+    // Optionnel : utiliser PokemonService pour supprimer un Pokémon
+    this.pokemons = this.pokemons.filter(p => p.id !== id);
   }
 }

@@ -45,17 +45,39 @@
   background-color: #c9302c;
 }
 
+/* --- Nouveau style booster Pokémon --- */
 .booster-btn {
-  padding: 8px 16px;
-  background-color: #0275d8;
-  color: white;
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  background: linear-gradient(45deg, #ffcb05, #ff1c1c, #3b4cca, #ffcb05);
+  background-size: 400% 400%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: 0.5s;
+  overflow: hidden;
 }
 
 .booster-btn:hover {
-  background-color: #025aa5;
+  animation: gradientMove 3s ease infinite;
+  transform: scale(1.05);
+}
+
+.booster-text {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .empty-msg {
