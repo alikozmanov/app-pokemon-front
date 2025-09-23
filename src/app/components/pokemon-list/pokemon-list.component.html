@@ -1,8 +1,12 @@
 <h2>Mes Pokémons</h2>
 
-<button (click)="ouvrirBooster()" class="booster-btn">
-  <span class="booster-text">Ouvrir un Booster</span>
-</button>
+<div class="boosters-container">
+  <button *ngFor="let i of [1,2,3,4,5]"
+          (click)="ouvrirBooster(i)"
+          class="booster-btn">
+    <span class="booster-text">Ouvrir Booster {{i}}</span>
+  </button>
+</div>
 
 <div *ngIf="pokemons.length === 0" class="empty-msg">
   Aucun Pokémon trouvé.

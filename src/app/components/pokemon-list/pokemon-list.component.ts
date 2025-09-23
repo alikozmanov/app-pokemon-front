@@ -15,14 +15,14 @@ export class PokemonListComponent implements OnInit {
   constructor(private boosterService: BoosterService) {}
 
   ngOnInit(): void {
-    // On peut éventuellement charger les Pokémon existants ici
     this.pokemons = [];
   }
 
-  ouvrirBooster(): void {
+  // Chaque bouton ouvre un booster et remplace les cartes affichées
+  ouvrirBooster(boosterNumber: number): void {
+    console.log("Ouverture du booster", boosterNumber);
     this.boosterService.ouvrir(this.dresseurId).subscribe({
       next: (nouveauxPokemons: Pokemon[]) => {
-        // Remplacer les Pokémon affichés par les 10 nouvelles cartes
         this.pokemons = nouveauxPokemons;
       },
       error: (err: any) => console.error('Erreur ouverture booster', err)
@@ -30,7 +30,6 @@ export class PokemonListComponent implements OnInit {
   }
 
   supprimer(id: number): void {
-    // Optionnel : utiliser PokemonService pour supprimer un Pokémon
     this.pokemons = this.pokemons.filter(p => p.id !== id);
   }
 }

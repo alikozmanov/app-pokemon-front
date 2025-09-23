@@ -45,21 +45,29 @@
   background-color: #c9302c;
 }
 
-/* --- Nouveau style booster Pokémon --- */
+/* --- Conteneur pour plusieurs boosters --- */
+.boosters-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* --- Style booster Pokémon rectangulaire --- */
 .booster-btn {
-  position: relative;
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 1.2rem;
+  flex: 1;           /* tous les boutons prennent la même largeur */
+  min-width: 150px;  /* largeur minimale */
+  padding: 16px 40px; /* long rectangle */
+  font-size: 1.4rem;
   font-weight: bold;
   color: #fff;
   text-transform: uppercase;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   background: linear-gradient(45deg, #ffcb05, #ff1c1c, #3b4cca, #ffcb05);
   background-size: 400% 400%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
   transition: 0.5s;
   overflow: hidden;
 }
