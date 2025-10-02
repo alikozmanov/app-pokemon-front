@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BoosterService } from '../../services/booster.service';
 import { Pokemon } from '../../models/pokemon.model';
 
@@ -6,26 +6,41 @@ import { Pokemon } from '../../models/pokemon.model';
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css'],
-  standalone: false,
+  standalone: false
 })
 export class PokemonListComponent implements OnInit {
   pokemons: Pokemon[] = [];
-  dresseurId = 1; // ID du dresseur connecté
+  dresseurId = 3;
+
+  @ViewChild('lightEau') lightEau!: ElementRef;
+  @ViewChild('lightFeu') lightFeu!: ElementRef;
+  @ViewChild('lightElec') lightElec!: ElementRef;
+  @ViewChild('lightPlante') lightPlante!: ElementRef;
+  @ViewChild('lightVol') lightVol!: ElementRef;
 
   constructor(private boosterService: BoosterService) {}
 
-  ngOnInit(): void {
-    this.pokemons = [];
-  }
+  ngOnInit(): void {}
 
-  // Chaque bouton ouvre un booster et remplace les cartes affichées
-  ouvrirBooster(boosterNumber: number): void {
-    console.log("Ouverture du booster", boosterNumber);
-    this.boosterService.ouvrir(this.dresseurId).subscribe({
-      next: (nouveauxPokemons: Pokemon[]) => {
-        this.pokemons = nouveauxPokemons;
-      },
-      error: (err: any) => console.error('Erreur ouverture booster', err)
+  ouvrirBooster(type: string): void {
+    let light: ElementRef;
+    switch(type) {
+      case 'Eau': light = this.lightEau; break;
+      case 'Feu': light = this.lightFeu; break;
+      case 'Électrik': light = this.lightElec; break;
+      case 'Plante': light = this.lightPlante; break;
+      case 'Vol': light = this.lightVol; break;
+      default: return;
+    }
+
+    // Lumière TCG
+    light.nativeElement.querySelector('.booster-light').style.opacity = '1';
+    setTimeout(() => light.nativeElement.querySelector('.booster-light').style.opacity = '0', 300);
+
+    // Ouvrir booster backend
+    this.boosterService.ouvrirParType(this.dresseurId, type).subscribe({
+      next: (nouveauxPokemons: Pokemon[]) => this.pokemons = nouveauxPokemons,
+      error: (err) => console.error('Erreur ouverture booster', err)
     });
   }
 
