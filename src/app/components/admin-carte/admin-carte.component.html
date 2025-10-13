@@ -1,8 +1,0 @@
-<h2>Administration Cartes</h2>
-<div *ngIf="pokemons.length === 0">Aucune carte trouvée.</div>
-<ul>
-  <li *ngFor="let p of pokemons">
-    {{ p.nom }} ({{ p.type }}) - Niveau {{ p.niveau }} - Rareté {{ p.rarete }}
-    <button (click)="supprimer(p.id)">Supprimer</button>
-  </li>
-</ul>

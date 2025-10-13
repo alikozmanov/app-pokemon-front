@@ -39,7 +39,15 @@ export class PokemonListComponent implements OnInit {
 
     // Ouvrir booster backend
     this.boosterService.ouvrirParType(this.dresseurId, type).subscribe({
-      next: (nouveauxPokemons: Pokemon[]) => this.pokemons = nouveauxPokemons,
+      next: (nouveauxPokemons: Pokemon[]) => {
+        this.pokemons = []; // Réinitialise le tableau
+        // Ajouter les cartes une par une
+        nouveauxPokemons.forEach((p, index) => {
+          setTimeout(() => {
+            this.pokemons.push(p);
+          }, index * 400); // 400ms entre chaque carte
+        });
+      },
       error: (err) => console.error('Erreur ouverture booster', err)
     });
   }

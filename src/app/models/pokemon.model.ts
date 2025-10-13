@@ -9,6 +9,7 @@ export class Pokemon {
   defense: number;
   rarete: string;
   dresseur?: Dresseur;
+  imageUrl?: string;
 
   constructor(
     id: number,
@@ -18,7 +19,8 @@ export class Pokemon {
     attaque: number,
     defense: number,
     rarete: string,
-    dresseur?: Dresseur
+    dresseur?: Dresseur,
+    imageUrl?: string
   ) {
     this.id = id;
     this.nom = nom;
@@ -28,5 +30,6 @@ export class Pokemon {
     this.defense = defense;
     this.rarete = rarete;
     this.dresseur = dresseur;
+    this.imageUrl = imageUrl;
   }
 }

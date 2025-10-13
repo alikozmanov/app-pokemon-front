@@ -24,7 +24,7 @@
 <div class="card-container">
   <div class="pokemon-card" *ngFor="let p of pokemons">
     <div class="pokemon-image">
-      <img src="assets/default-pokemon.png" alt="{{ p.nom }}">
+      <img [src]="p.imageUrl || 'assets/default-pokemon.png'" alt="{{ p.nom }}">
     </div>
     <div class="pokemon-info">
       <h3>{{ p.nom }}</h3>
@@ -35,3 +35,4 @@
     <button class="delete-btn" (click)="supprimer(p.id)">Supprimer</button>
   </div>
 </div>
+

@@ -5,8 +5,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { DresseurListComponent } from './components/dresseur-list/dresseur-list.component';
 import { DresseurFormComponent } from './components/dresseur-form/dresseur-form.component';
 import { EchangeListComponent } from './components/echange-list/echange-list.component';
-import { AdminCarteComponent } from './components/admin-carte/admin-carte.component';
-import { AdminBoosterComponent } from './components/admin-booster/admin-booster.component';
+
 
 
 const routes: Routes = [
@@ -15,8 +14,6 @@ const routes: Routes = [
   { path: 'dresseurs', component: DresseurListComponent },
   { path: 'dresseur/form/:id', component: DresseurFormComponent },
   { path: 'echanges', component: EchangeListComponent },
-  { path: 'admin/cartes', component: AdminCarteComponent },
-  { path: 'admin/boosters', component: AdminBoosterComponent },
   { path: '**', redirectTo: '' }
 ];
 
